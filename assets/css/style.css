@@ -1,0 +1,97 @@
+body {
+    background-image: url('../images/background.jpg');
+    background-size:cover;
+}
+#question-answer {
+    background-color:rgba(256,256,256,0.95);
+    height:500px;
+    width:1200px;
+    margin:50px auto 50px auto;
+    text-align:center;
+}
+
+.question-header {
+    display:none;
+}
+button {
+    margin-left:20px;
+}
+#buttonDiv {
+    width:250px;
+    margin:0 auto;
+    text-align:center;
+}
+#start-button {
+    margin: 0 auto;
+    padding:20px 30px;
+    border-radius: 5px;
+    color:white;
+    font-weight:600;
+    border:none;
+    font-size:30px;
+    webkit-animation-name: background; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+    animation-name: background;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes background {
+    0% {background-color: red;}
+    50% {background-color: orange;}
+    100% {background-color: red;}
+}
+
+/* Standard syntax */
+@keyframes background {
+    0% {background-color: red;}
+    50% {background-color: orange;}
+    100% {background-color: red;}
+}
+#gameOver {
+    font-family: 'Permanent Marker', cursive;
+    text-align:center;
+    padding-top:30px;
+    font-size:50px;
+}
+#intro {
+    font-family: 'Permanent Marker', cursive;
+    text-align:center;
+    padding-top:75px;
+    font-size:75px; 
+}
+#question-answer p {
+    font-family: 'Permanent Marker', cursive;
+    text-align:center;
+    font-size:26px;
+}
+#questionHeader {
+    font-family: 'Permanent Marker', cursive;
+    text-align:center;
+    padding-top:30px;
+    font-size:50px;
+}
+#question {
+    font-family: 'Permanent Marker', cursive;
+    text-align:center;
+    font-size:30px; 
+}
+.answer {
+    background-color: rgb(25, 171, 228);
+    color:white;
+    font-size:20px;
+    font-weight:600;
+    border:none;
+    border-radius:5px;
+    padding:0px 30px;
+}
+.answer:hover {
+    background-color:rgb(25, 228, 176);
+}
+#timer {
+    font-family: 'Permanent Marker', cursive;
+    display:none;
+    background-color: rgba(256,256,256,0.95);
+    padding:20px 30px;
+    font-size:25px;
+}
