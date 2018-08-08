@@ -7,7 +7,7 @@ questionArray = [{question: "What year did the Wright Brothers make their first 
 {question: "How many fingers does Mickey Mouse have?", answer1: "Two", answer2: "Three", answer3: "Four", answer4: "Five", correctAnswer: 'Three'},
 {question: "What is the next number in the pattern: 144, 121, 100, 81, ...", answer1: "70", answer2: "64", answer3: "72", answer4: "60", correctAnswer: '64'},
 {question: "Unlike most other fish, sharks have no ...?", answer1: "Bones", answer2: "Heart", answer3: "Liver", answer4: "Gills", correctAnswer: 'Bones'},
-{question: "What tree do acorns come from?", answer1: "Acorn Tree", answer2: "Pine Tree", answer3: "Sequia Tree", answer4: "Oak Tree", correctAnswer: 'Olympia'}];
+{question: "What tree do acorns come from?", answer1: "Acorn Tree", answer2: "Pine Tree", answer3: "Sequia Tree", answer4: "Oak Tree", correctAnswer: 'Oak Tree'}];
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
@@ -21,7 +21,7 @@ var gameDone = false;
 //Countdown timer
 function countdown() {
     stopClock() 
-    questionTime = 2;
+    questionTime = 10;
     $('#timer').text('Time Left For This Question: ' + questionTime);
     intervalCountdown = setInterval(function() {
         questionTime--;
