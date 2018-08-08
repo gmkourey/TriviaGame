@@ -1,13 +1,13 @@
-questionArray = [{question: "What year did the Wright Brothers make their first flight?", answer1: "1890", answer2: "1903", answer3: "1906", answer4: "1911", correctAnswer: '1903'},
-{question: "What is the capital of California?", answer1: "San Francisco", answer2: "Los Angeles", answer3: "Sacramento", answer4: "Fresno", correctAnswer: 'Sacramento'},
-{question: "Where is the Nile River located?", answer1: "North America", answer2: "Africa", answer3: "South America", answer4: "Asia", correctAnswer: 'Africa'},
-{question: "What is the seventh planet from the sun?", answer1: "Jupiter", answer2: "Neptune", answer3: "Saturn", answer4: "Uranus", correctAnswer: 'Uranus'},
-{question: "Which ocean is the world's largest?", answer1: "Pacific", answer2: "Atlantic", answer3: "Arctic", answer4: "Indian", correctAnswer: 'Pacific'},
-{question: "Who played Neo in the Matrix?", answer1: "Keanu Reeves", answer2: "The Rock", answer3: "Jackie Chan", answer4: "Bruce Willis", correctAnswer: 'Keanu Reeves'},
-{question: "How many fingers does Mickey Mouse have?", answer1: "Two", answer2: "Three", answer3: "Four", answer4: "Five", correctAnswer: 'Three'},
-{question: "What is the next number in the pattern: 144, 121, 100, 81, ...", answer1: "70", answer2: "64", answer3: "72", answer4: "60", correctAnswer: '64'},
-{question: "Unlike most other fish, sharks have no ...?", answer1: "Bones", answer2: "Heart", answer3: "Liver", answer4: "Gills", correctAnswer: 'Bones'},
-{question: "What tree do acorns come from?", answer1: "Acorn Tree", answer2: "Pine Tree", answer3: "Sequia Tree", answer4: "Oak Tree", correctAnswer: 'Oak Tree'}];
+questionArray = [{question: "What year did the Wright Brothers make their first flight?", answer1: "1890", answer2: "1903", answer3: "1906", answer4: "1911", correctAnswer: '1903', img: 'assets/images/wrightbrothers.gif'},
+{question: "What is the capital of California?", answer1: "San Francisco", answer2: "Los Angeles", answer3: "Sacramento", answer4: "Fresno", correctAnswer: 'Sacramento', img: 'assets/images/cali.gif'},
+{question: "Where is the Nile River located?", answer1: "North America", answer2: "Africa", answer3: "South America", answer4: "Asia", correctAnswer: 'Africa', img: 'assets/images/nile.gif'},
+{question: "What is the seventh planet from the sun?", answer1: "Jupiter", answer2: "Neptune", answer3: "Saturn", answer4: "Uranus", correctAnswer: 'Uranus', img: 'assets/images/solarsystem.gif'},
+{question: "Which ocean is the world's largest?", answer1: "Pacific", answer2: "Atlantic", answer3: "Arctic", answer4: "Indian", correctAnswer: 'Pacific', img: 'assets/images/ocean.gif'},
+{question: "Who played Neo in the Matrix?", answer1: "Keanu Reeves", answer2: "The Rock", answer3: "Jackie Chan", answer4: "Bruce Willis", correctAnswer: 'Keanu Reeves', img: 'assets/images/matrix.gif'},
+{question: "How many fingers does Mickey Mouse have?", answer1: "Two", answer2: "Three", answer3: "Four", answer4: "Five", correctAnswer: 'Three', img: 'assets/images/mickeymouse.gif'},
+{question: "What is the next number in the pattern: 144, 121, 100, 81, ...", answer1: "70", answer2: "64", answer3: "72", answer4: "60", correctAnswer: '64', img: 'assets/images/math.gif'},
+{question: "Unlike most other fish, sharks have no ...?", answer1: "Bones", answer2: "Heart", answer3: "Liver", answer4: "Gills", correctAnswer: 'Bones', img: 'assets/images/shark.gif'},
+{question: "What tree do acorns come from?", answer1: "Acorn Tree", answer2: "Pine Tree", answer3: "Sequia Tree", answer4: "Oak Tree", correctAnswer: 'Oak Tree', img: 'assets/images/acorn.gif'}];
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
@@ -27,13 +27,24 @@ function countdown() {
         questionTime--;
         $('#timer').text('Time Left For This Question: ' + questionTime);
         if(questionTime === 0 && gameDone === false) {
+            stopClock();
+            $('#question-answer').empty();
+            var conclusion = $('<h2>');
+            conclusion.text('Time is up! The correct answer is: ' + questionArray[indexParam].correctAnswer);
+            conclusion.attr('class', 'conclusion');
+            $('#question-answer').append(conclusion);
+            var image = $('<img>');
+            image.attr('src', questionArray[indexParam].img);
+            $('#question-answer').append(image);
             indexParam++;
             unanswered++;
             if(indexParam < questionArray.length) {
-            createQuestionAnswers(indexParam);
-            
-            stopClock();
-            countdown();
+                stopClock();
+                setTimeout(function() {
+                    createQuestionAnswers(indexParam);
+                    stopClock();
+                    countdown();
+                }, 3000)
         } else {
             gameOver();
             clearInterval(intervalCountdown)
@@ -78,10 +89,26 @@ function createQuestionAnswers(indexParam) {
 function status() {
     if(chosenAnswer === questionArray[indexParam].correctAnswer) {
         console.log("That\'s right!");
+        $('#question-answer').empty();
+        var conclusion = $('<h2>');
+        conclusion.text('That\'s right!');
+        conclusion.attr('class', 'conclusion');
+        $('#question-answer').append(conclusion);
+        var image = $('<img>');
+        image.attr('src', questionArray[indexParam].img);
+        $('#question-answer').append(image);
         correct++;
     }
     if(chosenAnswer !== questionArray[indexParam].correctAnswer) {
         console.log('That\'s incorrect!');
+        $('#question-answer').empty();
+        var conclusion = $('<h2>');
+        conclusion.text('That\'s not the right answer. The correct answer is: ' + questionArray[indexParam].correctAnswer);
+        conclusion.attr('class', 'conclusion');
+        $('#question-answer').append(conclusion);
+        var image = $('<img>');
+        image.attr('src', questionArray[indexParam].img);
+        $('#question-answer').append(image);
         incorrect++;
     }
 };
@@ -114,6 +141,7 @@ $('#start-button').on("click", function() {
     $('#start-button').css('display', 'none');
     $('#intro').css('display', 'none');
     $('#timer').css('display', 'inline-block')
+    gameDone = false;
     correct = 0;
     incorrect = 0;
     unanswered = 0;
@@ -126,14 +154,26 @@ $(document).on("click", '.answer', function() {
     chosenAnswer = $(this).text();
     if(indexParam < questionArray.length) {
     status();
+    // $('#question-answer').empty();
+    // var conclusion = $('<h2>');
+    // conclusion.text('The correct answer is: ' + questionArray[indexParam].correctAnswer);
+    // conclusion.attr('class', 'conclusion');
+    // $('#question-answer').append(conclusion);
+    // var image = $('<img>');
+    // image.attr('src', questionArray[indexParam].img);
+    // $('#question-answer').append(image);
+    stopClock();
     indexParam++;
     console.log('test1');
     
     console.log(indexParam);
     if (indexParam > 0 && indexParam < questionArray.length) {
         console.log('test');
-    createQuestionAnswers(indexParam);
-    countdown();
+        setTimeout(function() {
+            createQuestionAnswers(indexParam);
+            countdown();
+        }, 3000)
+
     }
 }
     if (indexParam === questionArray.length) {

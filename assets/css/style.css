@@ -5,14 +5,23 @@ body {
 }
 #question-answer {
     background-color:rgba(256,256,256,0.95);
-    height:500px;
+    height:400px;
     width:1200px;
     margin:50px auto 50px auto;
     text-align:center;
     border-radius:3px;
     border: 3px solid red;
 }
+img {
+    max-height:65%;
+    padding-top:0px;
+}
+.conclusion {
+    padding-top:0px;
+    font-family: 'Permanent Marker', cursive;
+    font-size:35px;
 
+}
 .question-header {
     display:none;
 }
@@ -54,8 +63,8 @@ button {
 #gameOver {
     font-family: 'Permanent Marker', cursive;
     text-align:center;
-    padding-top:30px;
-    font-size:50px;
+    margin: 30px 0px;
+    font-size:70px;
 }
 #intro {
     font-family: 'Permanent Marker', cursive;
@@ -66,7 +75,7 @@ button {
 #question-answer p {
     font-family: 'Permanent Marker', cursive;
     text-align:center;
-    font-size:26px;
+    font-size:30px;
 }
 #questionHeader {
     font-family: 'Permanent Marker', cursive;
